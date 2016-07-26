@@ -1,27 +1,23 @@
-INCLUDE_DIR=./dependencies/sfml/include
-LIB_DIR=./dependencies/sfml/lib
+INCLUDES=-Idependencies/sfml/include -Iinclude
+STATIC_LIB=-L./dependencies/sfml/lib
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 
 
-all: target/pong
+all: pong
 
-run: target/pong
-	./target/pong
+target/game.o: src/game.cpp
+	$(CXX) -Wall -c src/game.cpp -o target/game.o $(INCLUDES)
 
-target/obj/%.o: src/%.cpp
-	mkdir -p ./target/obj
-	$(CXX) -c $< -o $@ -I $(INCLUDE_DIR)
+target/main.o: src/main.cpp target/game.o
+	$(CXX) -Wall -c src/main.cpp -o target/main.o $(INCLUDES)
 
-target/obj/%.o: src/%.hpp
-	mkdir -p ./target/obj
-	$(CXX) -c $< -o $@ -I $(INCLUDE_DIR)
-
-target/pong: target/obj/main.o
+pong: target/main.o
 	@echo "BUILDING"
-	$(CXX) -o target/pong target/obj/*.o -L $(LIB_DIR) $(LIBS)
+	$(CXX) -Wall -o pong target/*.o $(STATIC_LIB) $(LIBS)
+
 
 clean:
-	rm -r target/.
+	-rm target/* pong
 
 
 
