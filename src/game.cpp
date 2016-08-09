@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include <game.hpp>
+#include "game.hpp"
 
 Game::Game() :
   window(sf::VideoMode(800, 600), "O_O"),
