@@ -1,13 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
+#include "ball.hpp"
+
 class Game {
   private:
     sf::RenderWindow window;
     sf::RectangleShape player;
     sf::RectangleShape bot;
-    sf::RectangleShape ball;
+    Ball ball;
 
+    void handleInput();
     void create();
     void update();
     void render();

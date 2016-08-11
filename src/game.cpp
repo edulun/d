@@ -7,17 +7,19 @@ Game::Game() :
   window(sf::VideoMode(800, 600), "O_O"),
   player(sf::Vector2f(20, 10)),
   bot(sf::Vector2f(20, 10)),
-  ball(sf::Vector2f(5, 5)) {}
+  ball() {
+}
 
 int Game::start() {
   while (window.isOpen()) {
+    handleInput();
     update();
     render();
   }
   return 0;
 }
 
-void Game::update() {
+void Game::handleInput() {
   sf::Event event;
   while (window.pollEvent(event)) {
     switch (event.type) {
@@ -36,6 +38,13 @@ void Game::update() {
         break;
     }
   }
+}
+
+void Game::update() {
+
+
+  if()
+
 }
 
 void Game::render() {
